@@ -6,7 +6,11 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import butterknife.Bind;
+import butterknife.OnClick;
+import yzs.movs.App;
 import yzs.movs.R;
+import yzs.movs.data.entity.MovSplicingImp;
+import yzs.movs.data.factory.MovSplicingFactory;
 import yzs.movs.ui.base.SwipeRefreshBaseActivity;
 
 /**
@@ -19,8 +23,12 @@ public class SpliceActivity extends SwipeRefreshBaseActivity {
         return R.layout.activity_splice;
     }
 
-    @Bind(R.id.fabtn)
-    FloatingActionButton fab;
+    @Bind(R.id.fabtn) FloatingActionButton fab;
+    @OnClick(R.id.btn_save)
+    public void save(){
+        MovSplicingImp movSplicing= MovSplicingFactory.createMovSplicing();
+        App.mDb.save(movSplicing);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
