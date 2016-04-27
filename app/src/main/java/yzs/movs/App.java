@@ -14,7 +14,7 @@ import yzs.movs.util.ToastUtils;
 public class App extends Application{
 
     private static final String DB_NAME="movs";
-    public static LiteOrm mDb;
+    public static LiteOrm mDb ;
 
     @Override
     public void onCreate() {
