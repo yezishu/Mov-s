@@ -16,14 +16,17 @@ public class App extends Application{
     private static final String DB_NAME="movs";
     public static LiteOrm mDb ;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
         ToastUtils.register(this);
+
         mDb=LiteOrm.newCascadeInstance(this,DB_NAME);
         if(DebugConfig.DEBUG){
             mDb.setDebugged(true);
         }
+
 
     }
 }

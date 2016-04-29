@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.Bind;
@@ -31,7 +32,7 @@ public class SpliceActivity extends SwipeRefreshBaseActivity {
     @Bind(R.id.fabtn) FloatingActionButton mFab;
     @Bind(R.id.splicesRv) RecyclerView mSplicesRv;
 
-    private List<ImgSpliceItem> mSpliceItems=new ArrayList<>();
+    private List<ImgSpliceItem> mSpliceItems= Collections.emptyList();
     private SplicesAdapterRv mSplicesAdapter;
 
     @OnClick(R.id.fabtn)
