@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +16,8 @@ import butterknife.OnClick;
 import me.crosswall.photo.pick.PickConfig;
 import yzs.movs.R;
 import yzs.movs.data.entity.ImgSpliceItem;
+import yzs.movs.even.ItemTouchEven;
+import yzs.movs.even.MyItemTouchCallback;
 import yzs.movs.ui.adapter.SplicesAdapterRv;
 import yzs.movs.ui.base.SwipeRefreshBaseActivity;
 import yzs.movs.util.ToastUtils;
@@ -23,7 +26,7 @@ import yzs.movs.util.ToastUtils;
  * Des：
  * creat by Zishu.Ye on 2016/4/25  9:31
  */
-public class SpliceActivity extends SwipeRefreshBaseActivity {
+public class SpliceActivity extends SwipeRefreshBaseActivity implements ItemTouchEven {
     @Override
     protected int provieContentViewId() {
         return R.layout.activity_splice;
@@ -56,6 +59,9 @@ public class SpliceActivity extends SwipeRefreshBaseActivity {
         mSplicesRv.setLayoutManager(new LinearLayoutManager(this));
         mSplicesAdapter=new SplicesAdapterRv(mSpliceItems);
         mSplicesRv.setAdapter(mSplicesAdapter);
+        ItemTouchHelper.Callback callback=new MyItemTouchCallback(this);
+        ItemTouchHelper touchHelper=new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(mSplicesRv);
     }
 
     @Override
@@ -73,5 +79,9 @@ public class SpliceActivity extends SwipeRefreshBaseActivity {
         }
     }
 
-
+    @Override
+    public void itemTouchOnMove(int oldPosition, int newPosition) {
+        Collections.swap(mSpliceItems,oldPosition,newPosition);
+        mSplicesAdapter.notifyItemMoved(oldPosition,newPosition);
+    }
 }
