@@ -1,6 +1,7 @@
 package yzs.movs.data.factory;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 import yzs.movs.data.entity.MovSplicingImp;
@@ -18,6 +19,7 @@ public class MovSplicingFactory {
         Date date= Calendar.getInstance().getTime();
 
         MovSplicingImp imp=new MovSplicingImp();
+        imp.spliceItems= Collections.emptyList();
         imp.creatTime=date;
         imp.name="S"+date;
 

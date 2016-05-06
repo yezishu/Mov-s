@@ -38,6 +38,7 @@ dependencies {
     compile rootProject.ext.dependencies["retrofit-gson"]
     compile rootProject.ext.dependencies["retrofit-rxja"]
     compile rootProject.ext.dependencies["imageloader"]
+    compile(rootProject.ext.dependencies["material-dialog-core"]) { transitive = true }
     compile files('libs/lite-orm-1.8.1.jar')
     compile project(':pickphotos')
 }

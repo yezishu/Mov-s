@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import yzs.movs.R;
+import yzs.movs.data.SpliceItem;
 import yzs.movs.data.entity.ImgSpliceItem;
 import yzs.movs.data.factory.SpliceItemFactory;
 import yzs.movs.ui.base.BaseActivity;
@@ -28,9 +29,9 @@ import yzs.movs.widget.RatioImageView;
 public class SplicesAdapterRv  extends RecyclerView.Adapter<SplicesAdapterRv.SpliceViewHolder> {
 
     private static final String TAG="SplicesAdapterRvlog";
-    private List<ImgSpliceItem> mSpliceItems;
+    private List<SpliceItem> mSpliceItems;
 
-    public SplicesAdapterRv(List<ImgSpliceItem> spliceItems) {
+    public SplicesAdapterRv(List<SpliceItem> spliceItems) {
         this.mSpliceItems = spliceItems;
     }
 
@@ -43,7 +44,7 @@ public class SplicesAdapterRv  extends RecyclerView.Adapter<SplicesAdapterRv.Spl
 
     @Override
     public void onBindViewHolder(SpliceViewHolder holder, int position) {
-        ImgSpliceItem item=this.mSpliceItems.get(position);
+        ImgSpliceItem item=(ImgSpliceItem)this.mSpliceItems.get(position);
             holder.setIv(item.path);
 
     }
@@ -101,8 +102,8 @@ public class SplicesAdapterRv  extends RecyclerView.Adapter<SplicesAdapterRv.Spl
      * @param paths 选中的图片
      * @return  imgsplice
      */
-    public List<ImgSpliceItem> str2model(List<String> paths){
-        List<ImgSpliceItem> spliceItems=new ArrayList<>();
+    public List<SpliceItem> str2model(List<String> paths){
+        List<SpliceItem> spliceItems=new ArrayList<>();
         for (String s:paths){
             spliceItems.add(SpliceItemFactory.creatImgSpliceItem(s));
         }
